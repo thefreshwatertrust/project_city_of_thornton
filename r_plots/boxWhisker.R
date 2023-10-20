@@ -1,9 +1,10 @@
 library(ggplot2)
+library(ggpubr)
 library(scales)
 library(extrafont)
 
 # Load your dataset
-df <- read.csv('C:/Users/tommy/Documents/GIS/crd_plots/wssc_sales.csv')
+df <- read.csv('r_plots/wssc_sales.csv')
 
 # Define a custom color palette (replace these colors with your preferred colors)
 custom_colors <- c("#bce3df","#9daec8","#5791a7",
