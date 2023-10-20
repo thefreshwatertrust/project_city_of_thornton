@@ -67,8 +67,8 @@ for (sector in names(rf_sector_data)) {
   # Calculate summary statistics for the current RF Sector
   median_value <- median(data$dollar_acre)
   mean_value <- mean(data$dollar_acre)
-  lower_sd_limit <- median_value - sd(data$dollar_acre)
-  upper_sd_limit <- median_value + sd(data$dollar_acre)
+  lower_sd_limit <- mean_value - sd(data$dollar_acre)
+  upper_sd_limit <- mean_value + sd(data$dollar_acre)
   
   phist <- gghistogram(
     data, x = "dollar_acre", 
@@ -87,7 +87,7 @@ for (sector in names(rf_sector_data)) {
   
   pdensity <- ggdensity(
     data, x = "dollar_acre",
-    add="mean",
+    add="median",
     color= "RF_Sector", fill = "RF_Sector",
     palette = c("#232e3f"),
     alpha = 0.4
@@ -111,8 +111,8 @@ for (sector in names(rf_sector_data)) {
     annotate('text', x = (0.90 * lower_sd_limit) , y = mean(pdensity.data$density), 
              label=paste0("Lower SD: $", prettyNum(round(lower_sd_limit, 2), big.mark=',')), 
              color = 'black', size = 2.5, angle = 90, fontface="bold") +
-    annotate('text', x = (0.95 * mean_value), y = mean(pdensity.data$density), 
-             label=paste0("Mean: $", prettyNum(round(mean_value, 2), big.mark=',')), 
+    annotate('text', x = (0.95 * median_value), y = mean(pdensity.data$density), 
+             label=paste0("Median: $", prettyNum(round(median_value, 2), big.mark=',')), 
              color = 'black', size = 2.5, angle = 90, fontface="bold") +
     annotate('text', x = (1.05 * upper_sd_limit), y = mean(pdensity.data$density), 
              label=paste0("Upper SD: $", prettyNum(round(upper_sd_limit, 2), big.mark=',')), 
